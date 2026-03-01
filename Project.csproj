@@ -1,13 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RestoreAdditionalProjectSources>
-      https://api.nuget.org/v3/index.json;
-      https://nuget.lavalink.dev/v3/index.json;
-      https://dl.cloudsmith.io/public/lava-pals/lava-pals/nuget/v3/index.json
-    </RestoreAdditionalProjectSources>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="MelonLoader" Version="0.6.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    </ItemGroup>
 </Project>
