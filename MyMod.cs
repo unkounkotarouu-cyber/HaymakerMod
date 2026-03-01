@@ -7,6 +7,6 @@ public class MyMod : MelonMod
 {
     public override void OnInitializeMelon()
     {
-        MelonLogger.Msg("Musou Ready!");
+        MelonLogger.Msg("Musou Build Success!");
     }
 }
