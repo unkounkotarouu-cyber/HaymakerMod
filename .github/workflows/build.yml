@@ -5,15 +5,11 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: microsoft/setup-dotnet@v4
+    - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 6.0.x
-    - run: |
-        dotnet new classlib -n Project
-        dotnet add Project package MelonLoader --version 0.6.1
-        copy *.cs Project/Class1.cs
-        dotnet build Project --configuration Release
+    - run: dotnet build Project.csproj --configuration Release
     - uses: actions/upload-artifact@v4
       with:
         name: ModFile
-        path: Project/bin/Release/net6.0/*.dll
+        path: bin/Release/net6.0/*.dll
