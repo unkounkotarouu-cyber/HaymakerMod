@@ -8,11 +8,12 @@ jobs:
     - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 6.0.x
-    - name: Force Add Source and Build
+    - name: Download MelonLoader Directly
       run: |
-        # ここで MelonLoader が置いてある「裏の倉庫」を強制登録する
-        dotnet nuget add source https://nuget.lavalink.dev/v3/index.json -n Lavalink
-        dotnet build Project.csproj --configuration Release
+        # 公式のGitHubから直接DLLを引っこ抜いてくる
+        curl -L -o MelonLoader.zip https://github.com/LavaGang/MelonLoader/releases/download/v0.6.1/MelonLoader.x64.zip
+        tar -xf MelonLoader.zip MelonLoader.dll
+    - run: dotnet build Project.csproj --configuration Release
     - uses: actions/upload-artifact@v4
       with:
         name: ModFile
