@@ -14,8 +14,8 @@ jobs:
       run: |
         dotnet new classlib -n TempProject
         cd TempProject
-        # 必要な部品を無理やり追加する魔法のコマンド
         dotnet add package MelonLoader --version 0.6.1
+        # 前の階層にあるMyMod.csを無理やりコピー
         copy ../MyMod.cs ./Class1.cs
         dotnet build --configuration Release
     - name: Upload
