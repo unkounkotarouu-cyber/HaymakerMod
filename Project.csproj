@@ -4,11 +4,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MelonLoader" Version="0.6.1" />
-    <PackageReference Include="UnityEngine.Modules" Version="2021.3.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="MelonLoader">
-      <HintPath>MelonLoader.dll</HintPath>
-    </Reference>
   </ItemGroup>
 </Project>
