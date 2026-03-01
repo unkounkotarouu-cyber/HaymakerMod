@@ -1,15 +1,23 @@
 using MelonLoader;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(Mod.PunchMod), "GodPunch", "1.0.0", "Me")]
-[assembly: MelonGame("Console Studios", "Haymaker")]
+// ここで Mod の情報を定義する（ここが間違ってるとエラーになる）
+[assembly: MelonInfo(typeof(MyMod), "Haymaker Musou", "1.0.0", "You")]
+[assembly: MelonGame(null, null)]
 
-namespace Mod {
-public class PunchMod : MelonLoaderMod {
-public override void OnUpdate() {
-if (Input.GetKeyDown(KeyCode.Space)) {
-MelonLogger.Msg("God Mode Ready!");
-}
-}
-}
+namespace HaymakerMod
+{
+    public class MyMod : MelonMod
+    {
+        public override void OnInitializeMelon()
+        {
+            LoggerInstance.Msg("Haymaker Musou Initialized!");
+        }
+
+        public override void OnUpdate()
+        {
+            // ここに無双の処理を書く
+            // 今はテスト用にログが出るようにしてあるぜ
+        }
+    }
 }
