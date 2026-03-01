@@ -15,7 +15,6 @@ jobs:
         dotnet new classlib -n TempProject
         cd TempProject
         dotnet add package MelonLoader --version 0.6.1
-        # 前の階層にあるMyMod.csを無理やりコピー
         copy ../MyMod.cs ./Class1.cs
         dotnet build --configuration Release
     - name: Upload
