@@ -3,6 +3,8 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MelonLoader" Version="0.6.1" />
+    <Reference Include="MelonLoader">
+      <HintPath>MelonLoader.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
