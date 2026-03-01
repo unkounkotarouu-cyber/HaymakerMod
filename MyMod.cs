@@ -1,8 +1,6 @@
 using MelonLoader;
 using HarmonyLib;
-
-[assembly: MelonInfo(typeof(HaymakerMod.MyMod), "Haymaker Musou", "1.0.0", "You")]
-[assembly: MelonGame(null, null)]
+using UnityEngine;
 
 namespace HaymakerMod
 {
@@ -10,16 +8,18 @@ namespace HaymakerMod
     {
         public override void OnInitializeMelon()
         {
-            MelonLogger.Msg("Punch Power x100 Mod: Active!");
+            MelonLogger.Msg("Haymaker Musou: Punch Power x100 Active!");
         }
-
-        // ここに「パンチの威力を上書きする」処理を書き足していくぜ
-        // ※まずはビルドを通すための安全な構造だ
     }
 
-    [HarmonyPatch] // ゲーム内の特定の処理を狙い撃ちするぜ
+    // ゲーム内の「衝突判定（Collision）」をフックして威力を爆上げするぜ
+    [HarmonyPatch(typeof(Rigidbody), "AddForce", new System.Type[] { typeof(Vector3), typeof(ForceMode) })]
     public class PunchPowerPatch
     {
-        // ここに「敵を殴った時のダメージ計算」を横取りするコードを書く準備
+        public static void Prefix(ref Vector3 force)
+        {
+            // ここで力を100倍に増幅させる！
+            force *= 100f;
+        }
     }
 }
