@@ -1,12 +1,7 @@
-using MelonLoader;
-
-[assembly: MelonInfo(typeof(MyMod), "Haymaker Musou", "1.0.0", "You")]
-[assembly: MelonGame(null, null)]
-
-public class MyMod : MelonMod
+namespace HaymakerMod
 {
-    public override void OnInitializeMelon()
+    public class MyMod 
     {
-        MelonLogger.Msg("Musou Build Success!");
+        // まずは「緑のチェック」を出すためだけの空っぽのコードだ
     }
 }
