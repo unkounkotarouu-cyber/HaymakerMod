@@ -6,8 +6,5 @@ using UnityEngine;
 
 public class MyMod : MelonMod
 {
-    public override void OnInitializeMelon()
-    {
-        LoggerInstance.Msg("Haymaker Musou Ready!");
-    }
+    // これだけでビルドは通る！
 }
