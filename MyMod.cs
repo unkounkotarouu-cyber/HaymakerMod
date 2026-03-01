@@ -7,12 +7,6 @@ public class MyMod : MelonMod
 {
     public override void OnInitializeMelon()
     {
-        MelonLogger.Msg("Musou Mod Loaded! Let's Go!");
-    }
-
-    public override void OnUpdate()
-    {
-        // ここに「攻撃ボタンを押したら敵が飛ぶ」などの無双処理を書いていく
-        // 今はビルドが通ることを優先した構成だぜ！
+        MelonLogger.Msg("Musou Ready!");
     }
 }
