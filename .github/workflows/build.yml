@@ -1,32 +1,15 @@
-name: Build MelonMod
-on: [push]
+using MelonLoader;
+using UnityEngine;
 
-jobs:
-  build:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v4
+[assembly: MelonInfo(typeof(HaymakerMod.MyFirstMod), "GodHand", "1.0.0", "YourName")]
+[assembly: MelonGame("Console Studios", "Haymaker")]
 
-    - name: Setup .NET
-      uses: microsoft/setup-dotnet@v4
-      with:
-        dotnet-version: 6.0.x
-
-    - name: Download MelonLoader Libs
-      run: |
-        powershell -Command "Invoke-WebRequest -Uri https://github.com/LavaGang/MelonLoader/releases/latest/download/MelonLoader.x86.zip -OutFile ml.zip"
-        expand-archive ml.zip -DestinationPath ml_libs
-
-    - name: Build
-      run: |
-        dotnet new classlib -n TempProject
-        copy MyMod.cs TempProject/Class1.cs
-        cd TempProject
-        dotnet add package MelonLoader --version 0.6.1
-        dotnet build --configuration Release
-        
-    - name: Upload
-      uses: actions/upload-artifact@v4
-      with:
-        name: MyCompiledMod
-        path: TempProject/bin/Release/net6.0/*.dll
+namespace HaymakerMod {
+    public class MyFirstMod : MelonLoaderMod {
+        public override void OnUpdate() {
+            if (Input.GetKeyDown(KeyCode.Space)) { // テスト用にスペースキー判定
+                MelonLogger.Msg("MODは動いているぞ！");
+            }
+        }
+    }
+}
