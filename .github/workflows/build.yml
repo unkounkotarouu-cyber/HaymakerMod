@@ -8,13 +8,12 @@ jobs:
     - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 6.0.x
-    - name: Download MelonLoader Directly
+    - name: Download and Setup MelonLoader
       run: |
-        # 公式のGitHubから直接DLLを引っこ抜いてくる
+        # zipを落として、中身を全部ぶちまける
         curl -L -o MelonLoader.zip https://github.com/LavaGang/MelonLoader/releases/download/v0.6.1/MelonLoader.x64.zip
-        tar -xf MelonLoader.zip MelonLoader.dll
-    - run: dotnet build Project.csproj --configuration Release
-    - uses: actions/upload-artifact@v4
-      with:
-        name: ModFile
-        path: bin/Release/net6.0/*.dll
+        powershell Expand-Archive -Path MelonLoader.zip -DestinationPath .
+    - name: Build Mod
+      run: |
+        # ここで MelonLoader.dll がどこにあるか直接指定してビルドする
+        dotnet build Project.csproj --configuration Release /p:MelonLoaderPath=.
