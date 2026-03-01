@@ -1,19 +1,32 @@
 name: Build MelonMod
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
+
     - name: Setup .NET
       uses: microsoft/setup-dotnet@v4
       with:
         dotnet-version: 6.0.x
-    - name: Build Mod
-      run: dotnet build --configuration Release
-    - name: Upload Artifact
+
+    - name: Download MelonLoader Libs
+      run: |
+        powershell -Command "Invoke-WebRequest -Uri https://github.com/LavaGang/MelonLoader/releases/latest/download/MelonLoader.x86.zip -OutFile ml.zip"
+        expand-archive ml.zip -DestinationPath ml_libs
+
+    - name: Build
+      run: |
+        dotnet new classlib -n TempProject
+        copy MyMod.cs TempProject/Class1.cs
+        cd TempProject
+        dotnet add package MelonLoader --version 0.6.1
+        dotnet build --configuration Release
+        
+    - name: Upload
       uses: actions/upload-artifact@v4
       with:
         name: MyCompiledMod
-        path: bin/Release/*.dll
+        path: TempProject/bin/Release/net6.0/*.dll
