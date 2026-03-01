@@ -2,6 +2,7 @@ namespace HaymakerMod
 {
     public class MyMod
     {
-        // 100%エラーが出ない空っぽの状態だ
+        // ログに出す文字だけ決めておくぜ
+        public string ModName = "Haymaker Musou";
     }
 }
