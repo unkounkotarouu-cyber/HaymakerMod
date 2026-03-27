@@ -25,8 +25,9 @@ jobs:
       run: dotnet build --no-restore -c Release
 
     - name: Upload Artifact
-      # ここを v4 に変えたぜ！これで文句は言わせない。
       uses: actions/upload-artifact@v4
       with:
         name: HaymakerMod_DLL
-        path: bin/Release/net6.0/*.dll
+        # これで、どこかにできた .dll を全部かき集めるぜ！
+        path: "**/bin/Release/**/*.dll"
+        
