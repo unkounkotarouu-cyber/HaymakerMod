@@ -1,19 +1,20 @@
-name: Build Haymaker Mod
-on: [push]
+name: Build Mod
+
+on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 6.0.x
-    - name: Build
-      run: dotnet build --configuration Release
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: HaymakerMod_DLL
-        path: bin/Release/netstandard2.1/*.dll
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      - name: Build
+        run: dotnet build Project.csproj -c Release
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: HaymakerMod_DLL
+          path: bin/Release/net6.0/*.dll
